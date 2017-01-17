@@ -6,11 +6,13 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.sync.QuoteSyncJob;
+import com.udacity.stockhawk.ui.DetailActivity;
 import com.udacity.stockhawk.ui.MainActivity;
 
 /**
@@ -37,6 +39,15 @@ public class StockListWidgetProvider extends AppWidgetProvider {
 
             remoteViews.setRemoteAdapter(R.id.widget_list,
                     new Intent(context, StockListWidgetRemoteViewService.class));
+
+
+            Intent clickIntentTemplate = new Intent(context, DetailActivity.class);
+
+            PendingIntent clickPendingIntentTemplate = TaskStackBuilder.create(context)
+                    .addNextIntentWithParentStack(clickIntentTemplate)
+                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            remoteViews.setPendingIntentTemplate(R.id.widget_list, clickPendingIntentTemplate);
 
             appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
         }

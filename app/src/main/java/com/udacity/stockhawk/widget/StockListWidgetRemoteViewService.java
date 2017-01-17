@@ -89,6 +89,10 @@ public class StockListWidgetRemoteViewService extends RemoteViewsService {
                 views.setTextViewText(R.id.widget_symbol, symbol);
                 views.setTextViewText(R.id.widget_price, "$" + price);
                 views.setTextViewText(R.id.widget_change, absoluteChange);
+                final Intent fillInIntent = new Intent();
+                Uri stockUri = Contract.Quote.makeUriForStock(symbol);
+                fillInIntent.setData(stockUri);
+                views.setOnClickFillInIntent(R.id.widget_list_item, fillInIntent);
                 return views;
             }
 

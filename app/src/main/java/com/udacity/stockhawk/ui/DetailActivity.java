@@ -106,8 +106,8 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             mLineChart.setPinchZoom(false);
             mLineChart.setBorderColor(Color.WHITE);
 
-            for (String aHistoryData : historyData) {
-                String[] temp = aHistoryData.split(",");
+            for (String data : historyData) {
+                String[] temp = data.split(",");
                 float xCoordinate = Float.parseFloat(temp[0]);
                 float yCoordinate = Float.parseFloat(temp[1]);
                 mEntries.add(new Entry(xCoordinate, yCoordinate));
@@ -120,13 +120,11 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             mLineChart.setData(lineData);
             mLineChart.setContentDescription(getString(R.string.stock_Description));
             mLineChart.invalidate();
-            mLineChart.animateY(1000);
-
         }
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        mLineChart.invalidate();
+
     }
 }
