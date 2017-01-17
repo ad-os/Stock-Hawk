@@ -44,5 +44,6 @@
     <string name="stock_widget_app_icon">Stock widget app Icon</string>
     <string name="empty_view_text">No Data to Display!</string>
     <string name="stock_hawk_widget">Stock Hawk Widget</string>
+    <string name="stock_Description">Stock\'s value over time</string>
 
 </resources>
